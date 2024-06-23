@@ -61,6 +61,9 @@ function typing(){
         mistake.innerText = mistakes;
         cpm.innerText = charIndex-mistakes;
         char[charIndex].classList.add('active');
+        if (charIndex+1 === char.length){
+            clearInterval(timer);
+        }
     }
     else{
         clearInterval(timer);
