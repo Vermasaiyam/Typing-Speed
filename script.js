@@ -6,7 +6,6 @@ var wpm = document.querySelector('#wpm');
 var cpm = document.querySelector('#cpm');
 var btn = document.getElementById('btn');
 
-// set values
 let timer;
 let maxTime = 60;
 let leftTime = maxTime;
@@ -35,7 +34,6 @@ function loadPara() {
         input.focus();
     });
 
-    // Automatically focus input for mobile/tablet screens
     if (window.innerWidth <= 768) {
         input.focus();
     }
