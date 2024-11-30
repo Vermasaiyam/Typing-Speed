@@ -14,77 +14,74 @@ let mistakes = 0;
 let charIndex = 0;
 let isTyping = false;
 
-function loadPara(){
-    let paras = ['Through vivid and heartfelt stories this book highlights the stark realities faced by those uprooted by the Cameroonian Civil War',
+function loadPara() {
+    let paras = [
+        'Through vivid and heartfelt stories this book highlights the stark realities faced by those uprooted by the Cameroonian Civil War',
         'showing the severe disruption to their lives and communities agonies of the Displaced serves as a call to action',
         'reminding us that the crisis continues and the plight of the displaced is far from over',
         'We believe in a world where artists are free to use their creativity to provide an engine for social change, and their work is honored as a human right',
         'We amplify the critical voices of artists who risk their lives to bring human rights issues to the forefront of conversation and inspire social change around the world'
-    ]
-    let index = Math.floor(Math.random()*paras.length);
+    ];
+    let index = Math.floor(Math.random() * paras.length);
     text.innerHTML = '';
-    for(var char of paras[index]){
-        console.log(char);
-        text.innerHTML += `<span>${char}</span>`
+    for (var char of paras[index]) {
+        text.innerHTML += `<span>${char}</span>`;
     }
     text.querySelectorAll('span')[0].classList.add('active');
-    document.addEventListener('keydown', ()=>{
+    document.addEventListener('keydown', () => {
         input.focus();
-    })
-    text.addEventListener('click', ()=>{
+    });
+    text.addEventListener('click', () => {
         input.focus();
-    })
+    });
+
+    // Automatically focus input for mobile/tablet screens
+    if (window.innerWidth <= 768) {
+        input.focus();
+    }
 }
 
-
-function typing(){
+function typing() {
     const char = text.querySelectorAll('span');
     const typedChar = input.value.charAt(charIndex);
-    
-    if (charIndex < char.length && leftTime > 0){
 
-        if (!isTyping){
+    if (charIndex < char.length && leftTime > 0) {
+        if (!isTyping) {
             timer = setInterval(initTime, 1000);
             isTyping = true;
         }
-        if (char[charIndex].innerText === typedChar){
+        if (char[charIndex].innerText === typedChar) {
             char[charIndex].classList.add('correct');
-            console.log('correct');
-        }
-        else{
+        } else {
             mistakes++;
             char[charIndex].classList.add('incorrect');
-            console.log('incorrect');
         }
-        // char[charIndex].classList.remove('active');
         charIndex++;
         mistake.innerText = mistakes;
-        cpm.innerText = charIndex-mistakes;
+        cpm.innerText = charIndex - mistakes;
         char[charIndex].classList.add('active');
-        if (charIndex+1 === char.length){
+        if (charIndex + 1 === char.length) {
             clearInterval(timer);
         }
-    }
-    else{
+    } else {
         clearInterval(timer);
+        isTyping = false;
         input.value = '';
     }
 }
 
-
-function initTime(){
-    if (leftTime>0){
+function initTime() {
+    if (leftTime > 0) {
         leftTime--;
         time.innerText = leftTime;
-        let w = Math.round(((charIndex-mistakes)/5)/(maxTime-leftTime)*60);
+        let w = Math.round(((charIndex - mistakes) / 5) / (maxTime - leftTime) * 60);
         wpm.innerText = w;
-    }
-    else{
+    } else {
         clearInterval(timer);
     }
 }
 
-function reset(){
+function reset() {
     loadPara();
     clearInterval(timer);
     leftTime = maxTime;
