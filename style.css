@@ -1,10 +1,11 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-body{
+
+body {
     display: flex;
     max-height: 100%;
     max-width: 1000vw;
@@ -13,7 +14,8 @@ body{
     align-items: center;
     justify-content: center;
 }
-input{
+
+input {
     margin: 5px 20px;
     border-radius: 5px;
     padding: 10px;
@@ -21,7 +23,8 @@ input{
     opacity: 0;
     z-index: -99;
 }
-.container{
+
+.container {
     display: flex;
     flex-direction: column;
     width: 50vw;
@@ -33,7 +36,7 @@ input{
     box-shadow: 5px 14px 10px rgba(0, 0, 0, 0.6);
 }
 
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     border: 1px solid grey;
@@ -42,13 +45,15 @@ input{
     border-radius: 10px;
     gap: 10px;
 }
-.content{
+
+.content {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
-ul{
+
+ul {
     display: flex;
     flex-direction: row;
     list-style-type: none;
@@ -56,12 +61,14 @@ ul{
     justify-content: space-between;
     width: calc(100% - 170px);
 }
-li{
+
+li {
     display: flex;
     flex-direction: row;
     gap: 4px;
 }
-#btn{
+
+#btn {
     background-color: #718355;
     box-shadow: 4px 4px 10px black;
     outline: none;
@@ -72,25 +79,78 @@ li{
     transition: transform 0.1s ease;
     cursor: pointer;
 }
-#btn:active{
+
+#btn:active {
     transform: scale(0.97);
 }
-#text span{
+
+#text span {
     position: relative;
 }
-#text span.active{
+
+#text span.active {
     color: orange;
 }
-#text span.correct{
+
+#text span.correct {
     color: green;
 }
-#text span.incorrect{
+
+#text span.incorrect {
     color: red;
     outline: 1px solid white;
     background: #ffc0cb;
 }
 
-::selection{
+::selection {
     color: white;
     background-color: #718355;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 80vw;
+        margin-top: 10vw;
+    }
+
+    ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    #btn {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 90vw;
+        padding: 15px;
+        margin-top: 5vw;
+    }
+
+    .wrapper {
+        padding: 10px;
+        gap: 5px;
+    }
+
+    ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    li {
+        font-size: 14px;
+    }
+
+    #text {
+        font-size: 18px;
+    }
+
+    #btn {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
 }
